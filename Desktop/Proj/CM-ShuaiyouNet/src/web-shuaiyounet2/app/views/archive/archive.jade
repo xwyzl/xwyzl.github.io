@@ -1,0 +1,74 @@
+extends layout
+
+block content
+    div(class="home-container")
+        if ssd.isShareBaseinfo
+            div(class="jumbotron")
+                div(class="container-fluid")
+                    div(class="row")
+                        div(class="col-xs-6")
+                            img(src="#{ssd.fengmianPic_}")
+                        div(class="col-xs-6")
+                            img(class="statusPic",src="#{ssd.shuaidang.statusImage_}")
+                            h3 #{ssd.shuaidang.name}
+                            h4 #{ssd.shuaidang.zhanji}
+                    div(class="row mt20")
+                        table(class="table table-condensed")
+                            tr
+                                td(class="col-xs-5") 编号:
+                                td(class="col-xs-7") #{ssd.shuaidang.serialNo}
+                            tr
+                                td(class="col-xs-5") 收入日期:
+                                td(class="col-xs-7") #{ssd.shuaidang.baseinfo.shouTime_}
+                            tr
+                                td(class="col-xs-5") 产地:
+                                td(class="col-xs-7") #{ssd.shuaidang.baseinfo.chandi_}
+                            tr
+                                td(class="col-xs-5") 价格:
+                                td(class="col-xs-7") #{ssd.shuaidang.baseinfo.shouPrice_}
+                            tr
+                                td(class="col-xs-5") 名字:
+                                td(class="col-xs-7") #{ssd.shuaidang.name}
+                            tr
+                                td(class="col-xs-5") 品别:
+                                td(class="col-xs-7") #{ssd.shuaidang.baseinfo.pinbie_}
+                            tr
+                                td(class="col-xs-5") 品种:
+                                td(class="col-xs-7") #{ssd.shuaidang.baseinfo.pinzhong_}
+                            tr
+                                td(class="col-xs-5") 品名:
+                                td(class="col-xs-7") #{ssd.shuaidang.baseinfo.pinming}
+                            tr
+                                td(class="col-xs-5") 品类:
+                                td(class="col-xs-7") #{ssd.shuaidang.baseinfo.pinlei_}
+                            tr
+                                td(class="col-xs-5") 品貌:
+                                td(class="col-xs-7") #{ssd.shuaidang.baseinfo.pinmao}
+                            tr
+                                td(class="col-xs-5") 空皮重量:
+                                td(class="col-xs-7") #{ssd.shuaidang.baseinfo.shouWeight}
+                            tr
+                                td(class="col-xs-5") 收入情况:
+                                td(class="col-xs-7") #{ssd.shuaidang.baseinfo.shouQingkuang}
+                            tr
+                                td(class="col-xs-5") 标签:
+                                td(class="col-xs-7") #{ssd.shuaidang.baseinfo.tag_}
+
+        if ssd.isShareImage
+            div(class="jumbotron")
+                each img in ssd.shuaidang.imageList
+                    img(class="img-responsive",src="#{img.url}")
+
+        if ssd.isShareVideo
+            div(class="jumbotron")
+                each vod in ssd.shuaidang.vodList
+                    div(class="embed-responsive embed-responsive-4by3")
+                        video(class="embed-responsive-item",controls="controls",preload="none",poster="#{vod.url}.jpg")
+                            source(src="#{vod.url}",type="video/mp4")
+
+        if ssd.isShareZhanji
+            div(class="jumbotron")
+                h3(style="text-align: center") #{ssd.shuaidang.zhanji}
+                each zj,index in ssd.shuaidang.zhanjiList
+                    h4 第#{index+1}战
+                        span #{zj.zhanguo}
